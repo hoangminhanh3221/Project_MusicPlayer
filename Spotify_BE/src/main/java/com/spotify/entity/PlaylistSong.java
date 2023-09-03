@@ -12,21 +12,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "history")
-public class History implements Serializable {
+@Table(name = "playlist_song")
+public class PlaylistSong implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "HistoryId")
-    private Integer historyId;
+    @Column(name = "PlaylistSongId")
+    private Integer PlaylistSongId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DatetimeListened", nullable = false)
-    private LocalDateTime datetimeListened;
+    @Column(name = "CreateDate", nullable = false)
+    private LocalDateTime createDate;
 
     @ManyToOne
-    @JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
-    private User user;
+    @JoinColumn(name = "PlaylistId", referencedColumnName = "PlaylistId", nullable = false)
+    private Playlist playlist;
 
     @ManyToOne
     @JoinColumn(name = "SongId", referencedColumnName = "SongId", nullable = false)

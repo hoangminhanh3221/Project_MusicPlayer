@@ -5,14 +5,12 @@ USE spotify;
 CREATE TABLE spotify.account (
     AccountId VARCHAR(20) PRIMARY KEY,
     Email VARCHAR(50) NOT NULL UNIQUE,
-    Password VARCHAR(50) NOT NULL,
-    IsDeleted BOOLEAN NOT NULL
+    Password VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE spotify.role (
     RoleId VARCHAR(10) PRIMARY KEY,
-    RoleName VARCHAR(50) not null,
-    IsDeleted BOOLEAN NOT NULL
+    RoleName VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE spotify.authority (
@@ -41,7 +39,8 @@ CREATE TABLE spotify.artist (
     MonthlyListener BIGINT NOT NULL,
     Follower BIGINT NOT NULL,
     Gender BOOLEAN NOT NULL,
-    ArtistImage VARCHAR(50) NOT NULL
+    ArtistImage VARCHAR(50) NOT NULL,
+    IsDeleted BOOLEAN NOT NULL
 );
 
 CREATE TABLE spotify.album (
@@ -51,6 +50,7 @@ CREATE TABLE spotify.album (
     ReleaseDate DATE NOT NULL,
     Genre VARCHAR(50) NOT NULL,
     AlbumImage VARCHAR(50) NOT NULL,
+    IsDeleted BOOLEAN NOT NULL,
     ArtistId INT NOT NULL,
     FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
 );
@@ -60,6 +60,7 @@ CREATE TABLE spotify.song (
     SongName VARCHAR(50) NOT NULL,
     DurationSeconds INT NOT NULL,
     Path VARCHAR(50) NOT NULL,
+    IsDeleted BOOLEAN NOT NULL,
     AlbumId INT NOT NULL,
     ArtistId INT NOT NULL,
     FOREIGN KEY (AlbumId) REFERENCES album(AlbumId),
@@ -71,26 +72,23 @@ CREATE TABLE spotify.playist (
     PlayistName VARCHAR(50) NOT NULL,
     Description VARCHAR(255) NOT NULL,
     PlayistImage VARCHAR(50) NOT NULL,
-    IsPublic BOOLEAN NOT NULL,
-    IsDeleted BOOLEAN NOT NULL,
-    UserId INT NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES user(UserId)
+    IsPublic BOOLEAN NOT NULL
 );
 
 CREATE TABLE spotify.playist_user (
     PlayistUserId INT AUTO_INCREMENT PRIMARY KEY,
+    CreateDate DATETIME NOT NULL,
     PlayistId INT NOT NULL,
     UserId INT NOT NULL,
-    CreateDate DATETIME NOT NULL,
     FOREIGN KEY (UserId) REFERENCES user(UserId),
     FOREIGN KEY (PlayistId) REFERENCES playist(PlayistId)
 );
 
 CREATE TABLE spotify.playlist_song (
     PlayistSongId INT AUTO_INCREMENT PRIMARY KEY,
+    CreateDate DATETIME NOT NULL,
     PlayistId INT NOT NULL,
     SongId INT NOT NULL,
-    CreateDate DATETIME NOT NULL,
     FOREIGN KEY (SongId) REFERENCES song(SongId),
     FOREIGN KEY (PlayistId) REFERENCES playist(PlayistId)
 );
@@ -106,9 +104,9 @@ CREATE TABLE spotify.history (
 
 CREATE TABLE spotify.like (
     LikeId INT AUTO_INCREMENT PRIMARY KEY,
+    DatetimeLike DATETIME NOT NULL,
     UserId INT NOT NULL,
     SongId INT NOT NULL,
-    DatetimeLike DATETIME NOT NULL,
     FOREIGN KEY (UserId) REFERENCES user(UserId),
     FOREIGN KEY (SongId) REFERENCES song(SongId)
 );

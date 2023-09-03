@@ -6,31 +6,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "follower")
-public class Follower implements Serializable {
+@Table(name = "favorite")
+public class Favorite implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "FollowerId")
-    private Integer followerId;
+    @Column(name = "FavoriteId")
+    private Integer favoriteId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DatetimeFollow", nullable = false)
-    private LocalDateTime datetimeFollow;
+    @Column(name = "DatetimeFavorite", nullable = false)
+    private LocalDateTime datetimeFavorite;
 
     @ManyToOne
     @JoinColumn(name = "UserId", referencedColumnName = "UserId", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "ArtistId", referencedColumnName = "ArtistId", nullable = false)
-    private Artist artist;
+    @JoinColumn(name = "SongId", referencedColumnName = "SongId", nullable = false)
+    private Song song;
 }
