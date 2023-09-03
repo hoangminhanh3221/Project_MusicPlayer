@@ -28,9 +28,10 @@ CREATE TABLE spotify.user (
     DOB DATE NOT NULL,
     Country VARCHAR(50) NOT NULL,
     UserImage VARCHAR(50) NOT NULL,
-    AccountId VARCHAR(50) NOT NULL,
+    AccountId VARCHAR(20) NOT NULL,
     FOREIGN KEY (AccountId) REFERENCES account(AccountId)
 );
+
 
 CREATE TABLE spotify.artist (
     ArtistId INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,30 +68,30 @@ CREATE TABLE spotify.song (
     FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
 );
 
-CREATE TABLE spotify.playist (
-    PlayistId INT AUTO_INCREMENT PRIMARY KEY,
-    PlayistName VARCHAR(50) NOT NULL,
+CREATE TABLE spotify.playlist (
+    PlaylistId INT AUTO_INCREMENT PRIMARY KEY,
+    PlaylistName VARCHAR(50) NOT NULL,
     Description VARCHAR(255) NOT NULL,
-    PlayistImage VARCHAR(50) NOT NULL,
+    PlaylistImage VARCHAR(50) NOT NULL,
     IsPublic BOOLEAN NOT NULL
 );
 
-CREATE TABLE spotify.playist_user (
-    PlayistUserId INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE spotify.playlist_user (
+    PlaylistUserId INT AUTO_INCREMENT PRIMARY KEY,
     CreateDate DATETIME NOT NULL,
-    PlayistId INT NOT NULL,
+    PlaylistId INT NOT NULL,
     UserId INT NOT NULL,
     FOREIGN KEY (UserId) REFERENCES user(UserId),
-    FOREIGN KEY (PlayistId) REFERENCES playist(PlayistId)
+    FOREIGN KEY (PlaylistId) REFERENCES Playlist(PlaylistId)
 );
 
 CREATE TABLE spotify.playlist_song (
-    PlayistSongId INT AUTO_INCREMENT PRIMARY KEY,
+    PlaylistSongId INT AUTO_INCREMENT PRIMARY KEY,
     CreateDate DATETIME NOT NULL,
-    PlayistId INT NOT NULL,
+    PlaylistId INT NOT NULL,
     SongId INT NOT NULL,
     FOREIGN KEY (SongId) REFERENCES song(SongId),
-    FOREIGN KEY (PlayistId) REFERENCES playist(PlayistId)
+    FOREIGN KEY (PlaylistId) REFERENCES Playlist(PlaylistId)
 );
 
 CREATE TABLE spotify.history (
@@ -102,9 +103,9 @@ CREATE TABLE spotify.history (
     FOREIGN KEY (SongId) REFERENCES song(SongId)
 );
 
-CREATE TABLE spotify.like (
-    LikeId INT AUTO_INCREMENT PRIMARY KEY,
-    DatetimeLike DATETIME NOT NULL,
+CREATE TABLE spotify.favorite (
+    FavoriteId INT AUTO_INCREMENT PRIMARY KEY,
+    DatetimeFavorite DATETIME NOT NULL,
     UserId INT NOT NULL,
     SongId INT NOT NULL,
     FOREIGN KEY (UserId) REFERENCES user(UserId),
@@ -113,9 +114,9 @@ CREATE TABLE spotify.like (
 
 CREATE TABLE spotify.follower (
     FollowerId INT AUTO_INCREMENT PRIMARY KEY,
+    DatetimeFollow DATETIME NOT NULL,
     UserId INT NOT NULL,
     ArtistId INT NOT NULL,
-    DatetimeFollow DATETIME NOT NULL,
     FOREIGN KEY (UserId) REFERENCES user(UserId),
     FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
 );
