@@ -3,5 +3,5 @@ package com.spotify.repository;
 import com.spotify.entity.Favorite;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface LikeRepository extends JpaRepository<Favorite, Integer> {
+public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
 }
