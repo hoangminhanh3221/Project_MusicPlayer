@@ -1,4 +1,4 @@
-package com.spotify.security;
+package com.spotify.repository;
 
 import com.spotify.entity.PlaylistSong;
 import org.springframework.data.jpa.repository.JpaRepository;
