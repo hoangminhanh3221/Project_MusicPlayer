@@ -1,7 +1,5 @@
 package com.spotify.dto;
 
-import com.spotify.entity.Artist;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.AccountDTO;
 import com.spotify.entity.Account;
 
 import java.util.List;
@@ -10,9 +11,9 @@ public interface AccountService {
 
     Optional<Account> getAccountById(String accountId);
 
-    Account createAccount(Account account);
+    Account createAccount(AccountDTO accountDTO);
 
-    Account updateAccount(Account account);
+    Account updateAccount(AccountDTO accountDTO);
 
     void deleteAccount(String accountId);
 }

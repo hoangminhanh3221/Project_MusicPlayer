@@ -1,27 +1,22 @@
 package com.spotify.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.spotify.entity.Authority;
-import com.spotify.entity.User;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDTO {
+    @NotEmpty(message = "AccountId not null!")
     private String accountId;
 
+    @Email(message = "Email not null")
     private String email;
 
+    @NotEmpty(message = "Password not null!")
     private String password;
 
-    private Integer userId;
 }

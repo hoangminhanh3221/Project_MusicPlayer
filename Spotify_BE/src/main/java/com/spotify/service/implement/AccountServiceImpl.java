@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.AccountDTO;
 import com.spotify.entity.Account;
 import com.spotify.repository.AccountRepository;
 import com.spotify.service.AccountService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,16 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account createAccount(Account account) {
+    public Account createAccount(AccountDTO accountDTO) {
+        Account account = new Account();
+        BeanUtils.copyProperties(accountDTO, account);
         return accountRepository.save(account);
     }
 
     @Override
-    public Account updateAccount(Account account) {
+    public Account updateAccount(AccountDTO accountDTO) {
+        Account account = new Account();
+        BeanUtils.copyProperties(accountDTO, account);
         return accountRepository.save(account);
     }
 
