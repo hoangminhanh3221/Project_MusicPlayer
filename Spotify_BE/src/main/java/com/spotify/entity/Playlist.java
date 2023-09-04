@@ -19,16 +19,16 @@ public class Playlist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PlaylistId")
-    private Integer PlaylistId;
+    private Integer playlistId;
 
     @Column(name = "PlaylistName", length = 50, nullable = false)
-    private String PlaylistName;
+    private String playlistName;
 
     @Column(name = "Description", nullable = false)
     private String description;
 
     @Column(name = "PlaylistImage", length = 50, nullable = false)
-    private String PlaylistImage;
+    private String playlistImage;
 
     @Column(name = "IsPublic", nullable = false)
     private Boolean isPublic;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api/account")
 public class AccountAPI {
@@ -30,7 +31,7 @@ public class AccountAPI {
     public ResponseEntity<HttpStatus> createAccount(@RequestBody Account account){
         if(account != null){
             accountService.createAccount(account);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.badRequest().build();
         }

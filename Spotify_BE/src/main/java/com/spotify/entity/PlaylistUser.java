@@ -18,7 +18,7 @@ public class PlaylistUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PlaylistUserId")
-    private Integer PlaylistUserId;
+    private Integer playlistUserId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CreateDate", nullable = false)
