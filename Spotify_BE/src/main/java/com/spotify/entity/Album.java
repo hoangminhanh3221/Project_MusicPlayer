@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -27,9 +26,9 @@ public class Album implements Serializable {
     @Column(name = "AlbumTitle", nullable = false)
     private String albumTitle;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "ReleaseDate", nullable = false)
-    private LocalDate releaseDate;
+    private LocalDateTime releaseDate;
 
     @Column(name = "Genre", length = 50, nullable = false)
     private String genre;

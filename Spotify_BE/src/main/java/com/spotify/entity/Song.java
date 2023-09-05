@@ -30,6 +30,9 @@ public class Song implements Serializable {
     @Column(name = "Path", length = 50, nullable = false)
     private String path;
 
+    @Column(name = "SongImage", length = 50, nullable = false)
+    private String songImage;
+
     @Column(name = "IsDeleted", nullable = false)
     private Boolean isDeleted;
 

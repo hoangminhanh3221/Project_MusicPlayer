@@ -51,7 +51,7 @@ public class AccountAPI {
             accountService.createOrUpdate(accountDTO);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound.account", null,
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Account"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
@@ -64,7 +64,7 @@ public class AccountAPI {
             accountService.deleteAccount(id);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound.account", null,
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Account"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
