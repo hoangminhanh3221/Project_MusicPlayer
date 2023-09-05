@@ -2,6 +2,7 @@ package com.spotify.dto;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class AlbumDTO {
     private String albumTitle;
 
     @Future(message = "{future.album.releaseDate}")
-    @NotEmpty(message = "{notempty.album.releaseDate}")
+    @NotNull(message = "{notnull.album.releaseDate}")
     private LocalDateTime releaseDate;
 
     @NotEmpty(message = "{notempty.genre}")

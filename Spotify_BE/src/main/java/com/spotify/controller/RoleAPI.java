@@ -51,7 +51,7 @@ public class RoleAPI {
             roleService.createOrUpdate(roleDTO);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound.role", null,
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Role"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
@@ -64,7 +64,7 @@ public class RoleAPI {
             roleService.deleteRole(id);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound.role", null,
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Role"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }

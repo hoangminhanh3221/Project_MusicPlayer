@@ -50,7 +50,7 @@ public class AlbumAPI {
             albumService.createOrUpdate(albumDTO);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound.album", null,
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Album"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
@@ -63,7 +63,7 @@ public class AlbumAPI {
             albumService.deleteAlbum(id);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound.album", null,
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Album"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
