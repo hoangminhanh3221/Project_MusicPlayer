@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.FavoriteDTO;
 import com.spotify.entity.Favorite;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface FavoriteService {
 
     Optional<Favorite> getFavoriteById(Integer favoriteId);
 
-    Favorite createFavorite(Favorite favorite);
-
-    Favorite updateFavorite(Favorite favorite);
+    Favorite createOrUpdate(FavoriteDTO favoriteDTO);
 
     void deleteFavorite(Integer favoriteId);
 }

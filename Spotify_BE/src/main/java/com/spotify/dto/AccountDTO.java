@@ -10,13 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDTO {
-    @NotEmpty(message = "AccountId not null!")
+    @NotEmpty(message = "{notempty.account.accountid}")
     private String accountId;
 
-    @Email(message = "Email not null")
+    @Email(message = "{email.account.email}")
     private String email;
 
-    @NotEmpty(message = "Password not null!")
+    @NotEmpty(message = "{notempty.account.password}")
     private String password;
-
 }

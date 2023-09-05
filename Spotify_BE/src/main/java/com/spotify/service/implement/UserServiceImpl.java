@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.UserDTO;
 import com.spotify.entity.User;
 import com.spotify.repository.UserRepository;
 import com.spotify.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User updateUser(User user) {
+    public User createOrUpdate(UserDTO userDTO) {
+        User user = new User();
+        BeanUtils.copyProperties(userDTO, user);
         return userRepository.save(user);
     }
 

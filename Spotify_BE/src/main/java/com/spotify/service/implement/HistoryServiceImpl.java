@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.HistoryDTO;
 import com.spotify.entity.History;
 import com.spotify.repository.HistoryRepository;
 import com.spotify.service.HistoryService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public History createHistory(History history) {
-        return historyRepository.save(history);
-    }
-
-    @Override
-    public History updateHistory(History history) {
+    public History createOrUpdate(HistoryDTO historyDTO) {
+        History history = new History();
+        BeanUtils.copyProperties(historyDTO, history);
         return historyRepository.save(history);
     }
 

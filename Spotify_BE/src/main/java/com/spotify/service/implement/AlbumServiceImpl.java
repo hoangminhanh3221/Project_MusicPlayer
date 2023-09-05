@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.AlbumDTO;
 import com.spotify.entity.Album;
 import com.spotify.repository.AlbumRepository;
 import com.spotify.service.AlbumService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Album createAlbum(Album album) {
-        return albumRepository.save(album);
-    }
-
-    @Override
-    public Album updateAlbum(Album album) {
+    public Album createOrUpdate(AlbumDTO albumDTO) {
+        Album album = new Album();
+        BeanUtils.copyProperties(albumDTO, album);
         return albumRepository.save(album);
     }
 

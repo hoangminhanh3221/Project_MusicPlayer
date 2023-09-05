@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.AuthorityDTO;
 import com.spotify.entity.Authority;
 import com.spotify.repository.AuthorityRepository;
 import com.spotify.service.AuthorityService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public Authority createAuthority(Authority authority) {
-        return authorityRepository.save(authority);
-    }
-
-    @Override
-    public Authority updateAuthority(Authority authority) {
+    public Authority createOrUpdate(AuthorityDTO authorityDTO) {
+        Authority authority = new Authority();
+        BeanUtils.copyProperties(authorityDTO, authority);
         return authorityRepository.save(authority);
     }
 

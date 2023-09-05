@@ -11,9 +11,7 @@ public interface AccountService {
 
     Optional<Account> getAccountById(String accountId);
 
-    Account createAccount(AccountDTO accountDTO);
-
-    Account updateAccount(AccountDTO accountDTO);
+    Account createOrUpdate(AccountDTO accountDTO);
 
     void deleteAccount(String accountId);
 }

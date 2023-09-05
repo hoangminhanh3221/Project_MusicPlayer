@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.UserDTO;
 import com.spotify.entity.User;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface UserService {
 
     Optional<User> getUserById(Integer userId);
 
-    User createUser(User user);
-
-    User updateUser(User user);
+    User createOrUpdate(UserDTO userDTO);
 
     void deleteUser(Integer userId);
 }

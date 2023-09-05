@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.ArtistDTO;
 import com.spotify.entity.Artist;
 import com.spotify.repository.ArtistRepository;
 import com.spotify.service.ArtistService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public Artist createArtist(Artist artist) {
-        return artistRepository.save(artist);
-    }
-
-    @Override
-    public Artist updateArtist(Artist artist) {
+    public Artist createOrUpdate(ArtistDTO artistDTO) {
+        Artist artist = new Artist();
+        BeanUtils.copyProperties(artistDTO, artist);
         return artistRepository.save(artist);
     }
 

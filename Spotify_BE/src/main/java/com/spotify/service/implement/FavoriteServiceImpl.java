@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.FavoriteDTO;
 import com.spotify.entity.Favorite;
 import com.spotify.repository.FavoriteRepository;
 import com.spotify.service.FavoriteService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     @Override
-    public Favorite createFavorite(Favorite favorite) {
-        return favoriteRepository.save(favorite);
-    }
-
-    @Override
-    public Favorite updateFavorite(Favorite favorite) {
+    public Favorite createOrUpdate(FavoriteDTO favoriteDTO) {
+        Favorite favorite = new Favorite();
+        BeanUtils.copyProperties(favoriteDTO, favorite);
         return favoriteRepository.save(favorite);
     }
 

@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.FollowerDTO;
 import com.spotify.entity.Follower;
 import com.spotify.repository.FollowerRepository;
 import com.spotify.service.FollowerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class FollowerServiceImpl implements FollowerService {
     }
 
     @Override
-    public Follower createFollower(Follower follower) {
-        return followerRepository.save(follower);
-    }
-
-    @Override
-    public Follower updateFollower(Follower follower) {
+    public Follower createOrUpdate(FollowerDTO followerDTO) {
+        Follower follower = new Follower();
+        BeanUtils.copyProperties(followerDTO, follower);
         return followerRepository.save(follower);
     }
 

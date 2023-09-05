@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.AuthorityDTO;
 import com.spotify.entity.Authority;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface AuthorityService {
 
     Optional<Authority> getAuthorityById(Integer authorityId);
 
-    Authority createAuthority(Authority authority);
-
-    Authority updateAuthority(Authority authority);
+    Authority createOrUpdate(AuthorityDTO authorityDTO);
 
     void deleteAuthority(Integer authorityId);
 }

@@ -1,8 +1,10 @@
 package com.spotify.service.implement;
 
+import com.spotify.dto.PlaylistDTO;
 import com.spotify.entity.Playlist;
 import com.spotify.repository.PlaylistRepository;
 import com.spotify.service.PlaylistService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,12 +32,9 @@ public class PlaylistServiceImpl implements PlaylistService {
     }
 
     @Override
-    public Playlist createPlaylist(Playlist playlist) {
-        return playlistRepository.save(playlist);
-    }
-
-    @Override
-    public Playlist updatePlaylist(Playlist playlist) {
+    public Playlist createOrUpdate(PlaylistDTO playlistDTO) {
+        Playlist playlist = new Playlist();
+        BeanUtils.copyProperties(playlistDTO, playlist);
         return playlistRepository.save(playlist);
     }
 

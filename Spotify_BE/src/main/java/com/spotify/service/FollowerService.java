@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.FollowerDTO;
 import com.spotify.entity.Follower;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface FollowerService {
 
     Optional<Follower> getFollowerById(Integer followerId);
 
-    Follower createFollower(Follower follower);
-
-    Follower updateFollower(Follower follower);
+    Follower createOrUpdate(FollowerDTO followerDTO);
 
     void deleteFollower(Integer followerId);
 }

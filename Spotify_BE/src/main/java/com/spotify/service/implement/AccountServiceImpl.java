@@ -32,14 +32,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account createAccount(AccountDTO accountDTO) {
-        Account account = new Account();
-        BeanUtils.copyProperties(accountDTO, account);
-        return accountRepository.save(account);
-    }
-
-    @Override
-    public Account updateAccount(AccountDTO accountDTO) {
+    public Account createOrUpdate(AccountDTO accountDTO) {
         Account account = new Account();
         BeanUtils.copyProperties(accountDTO, account);
         return accountRepository.save(account);

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AlbumDTO {
+
     private Integer albumId;
 
     private String albumName;

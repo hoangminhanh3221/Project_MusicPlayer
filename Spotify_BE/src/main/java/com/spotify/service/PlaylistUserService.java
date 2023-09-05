@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.PlaylistUserDTO;
 import com.spotify.entity.PlaylistUser;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface PlaylistUserService {
 
     Optional<PlaylistUser> getPlaylistUserById(Integer playlistUserId);
 
-    PlaylistUser createPlaylistUser(PlaylistUser playlistUser);
-
-    PlaylistUser updatePlaylistUser(PlaylistUser playlistUser);
+    PlaylistUser createOrUpdate(PlaylistUserDTO playlistUserDTO);
 
     void deletePlaylistUser(Integer playlistUserId);
 }

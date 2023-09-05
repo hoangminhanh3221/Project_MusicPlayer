@@ -1,6 +1,6 @@
 package com.spotify.service;
 
-import com.spotify.entity.Album;
+import com.spotify.dto.AlbumDTO;
 import com.spotify.entity.Album;
 
 import java.util.List;
@@ -11,9 +11,7 @@ public interface AlbumService {
 
     Optional<Album> getAlbumById(Integer albumId);
 
-    Album createAlbum(Album album);
-
-    Album updateAlbum(Album album);
+    Album createOrUpdate(AlbumDTO albumDTO);
 
     void deleteAlbum(Integer albumId);
 }

@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.ArtistDTO;
 import com.spotify.entity.Artist;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface ArtistService {
 
     Optional<Artist> getArtistById(Integer artistId);
 
-    Artist createArtist(Artist artist);
-
-    Artist updateArtist(Artist artist);
+    Artist createOrUpdate(ArtistDTO artistDTO);
 
     void deleteArtist(Integer artistId);
 }

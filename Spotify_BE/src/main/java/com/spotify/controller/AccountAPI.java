@@ -10,9 +10,9 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 
@@ -37,7 +37,7 @@ public class AccountAPI {
     @PostMapping("/create")
     public ResponseEntity<HttpStatus> createAccount(@RequestBody @Valid AccountDTO accountDTO) {
         if (accountDTO != null) {
-            accountService.createAccount(accountDTO);
+            accountService.createOrUpdate(accountDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.badRequest().build();
@@ -48,28 +48,26 @@ public class AccountAPI {
     public ResponseEntity<HttpStatus> updateAccount(@RequestBody @Valid AccountDTO accountDTO) {
         Optional<Account> currentAccount = accountService.getAccountById(accountDTO.getAccountId());
         if (currentAccount.isPresent()) {
-            accountService.updateAccount(accountDTO);
+            accountService.createOrUpdate(accountDTO);
             return ResponseEntity.ok().build();
         } else {
-            return ResponseEntity.notFound().build();
+            String errorMessage = messageSource.getMessage("notfound.account", null,
+                    LocaleContextHolder.getLocale());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteAccount(
-            @PathVariable("id") String id
-    ) {
+    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable("id") String id) {
         Optional<Account> currentAccount = accountService.getAccountById(id);
         if (currentAccount.isPresent()) {
             accountService.deleteAccount(id);
             return ResponseEntity.ok().build();
         } else {
-            return ResponseEntity.notFound().build();
+            String errorMessage = messageSource.getMessage("notfound.account", null,
+                    LocaleContextHolder.getLocale());
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
     }
 
-    @GetMapping("/i18n")
-    public String testi18n(@RequestHeader(name="Accept-Language", required = false) Locale locale){
-        return messageSource.getMessage("test.i18n",null, LocaleContextHolder.getLocale());
-    }
 }

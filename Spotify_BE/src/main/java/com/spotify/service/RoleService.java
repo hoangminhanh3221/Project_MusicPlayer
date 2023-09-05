@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.RoleDTO;
 import com.spotify.entity.Role;
 
 import java.util.List;
@@ -10,9 +11,9 @@ public interface RoleService {
 
     Optional<Role> getRoleById(String roleId);
 
-    Role createRole(Role role);
-
-    Role updateRole(Role role);
+    Role createOrUpdate(RoleDTO roleDTO);
 
     void deleteRole(String roleId);
+
+    Role getLatestRole();
 }

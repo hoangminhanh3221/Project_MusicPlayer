@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.HistoryDTO;
 import com.spotify.entity.History;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface HistoryService {
 
     Optional<History> getHistoryById(Integer historyId);
 
-    History createHistory(History history);
-
-    History updateHistory(History history);
+    History createOrUpdate(HistoryDTO historyDTO);
 
     void deleteHistory(Integer historyId);
 }

@@ -1,5 +1,6 @@
 package com.spotify.service;
 
+import com.spotify.dto.SongDTO;
 import com.spotify.entity.Song;
 
 import java.util.List;
@@ -10,9 +11,7 @@ public interface SongService {
 
     Optional<Song> getSongById(Integer songId);
 
-    Song createSong(Song song);
-
-    Song updateSong(Song song);
+    Song createOrUpdate(SongDTO songDTO);
 
     void deleteSong(Integer songId);
 }
