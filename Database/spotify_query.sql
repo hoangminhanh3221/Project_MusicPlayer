@@ -120,3 +120,40 @@ CREATE TABLE spotify.follower (
     FOREIGN KEY (UserId) REFERENCES user(UserId),
     FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
 );
+
+INSERT INTO spotify.account (AccountId, Email, Password)
+VALUES ('anh', 'hoangminhanh3221@gmail.com', '12345'),
+('minh', 'hma3221.ah@email.com', '12345'),
+('meomeo', 'meomeo@email.com', '12345'),
+('gaugau', 'gaugau@email.com', '12345'),
+('hoang', 'hma0302.ah@email.com', '12345');
+
+INSERT INTO spotify.role (RoleId, RoleName)
+VALUES ('R01', 'Normal'),
+('R02', 'Premium'),
+('R03', 'Artist'),
+('R04', 'Admin'),
+('R05', 'Editor');
+
+INSERT INTO spotify.authority (AccountId, RoleId)
+VALUES ('anh', 'R04'),
+('minh', 'R05'),
+('hoang', 'R01'),
+('meomeo', 'R01'),
+('meomeo', 'R02'),
+('gaugau', 'R01'),
+('gaugau', 'R02'),
+('gaugau', 'R03');
+
+INSERT INTO spotify.user (UserName, Gender, DOB, Country, UserImage, AccountId)
+VALUES ('Nguyễn Thị Mèo', 1, '2001-01-01', 'Việt Nam', 'user1.jpg', 'meomeo'),
+('Lê Thị Chó', 1, '2000-03-15', 'Việt Nam', 'user2.jpg', 'gaugau'),
+('Hoàng Minh Ảnh', 0, '2001-02-03', 'Việt Nam', 'user3.jpg', 'hoang');
+
+INSERT INTO spotify.artist (ArtistName, Genre, MonthlyListener, Follower, Gender, ArtistImage, IsDeleted)
+VALUES ('Taylor Swift', 'Pop, Rap, EDM', 0, 0, 1, 'artist1.jpg', 0),
+('Rihanna', 'Pop, Rap, EDM', 0, 0, 1, 'artist2.jpg', 0),
+('The Weekend', 'Pop, Rap, EDM', 0, 0, 0, 'artist3.jpg', 0),
+('Justin Bieber', 'Pop, Rap, EDM', 0, 0, 0, 'artist4.jpg', 0);
+
+
