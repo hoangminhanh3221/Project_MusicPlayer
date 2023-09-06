@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface AuthorityService {
     List<Authority> getAllAuthority();
-
     Optional<Authority> getAuthorityById(Integer authorityId);
-
     Authority createOrUpdate(AuthorityDTO authorityDTO);
-
     void deleteAuthority(Integer authorityId);
 }

@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface PlaylistSongService {
     List<PlaylistSong> getAllPlaylistSong();
-
     Optional<PlaylistSong> getPlaylistSongById(Integer playlistSongId);
-
     PlaylistSong createOrUpdate(PlaylistSongDTO playlistSongDTO);
-
     void deletePlaylistSong(Integer playlistSongId);
 }

@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface FavoriteService {
     List<Favorite> getAllFavorite();
-
     Optional<Favorite> getFavoriteById(Integer favoriteId);
-
     Favorite createOrUpdate(FavoriteDTO favoriteDTO);
-
     void deleteFavorite(Integer favoriteId);
 }

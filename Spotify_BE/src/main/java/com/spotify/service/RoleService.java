@@ -8,12 +8,8 @@ import java.util.Optional;
 
 public interface RoleService {
     List<Role> getAllRole();
-
     Optional<Role> getRoleById(String roleId);
-
     Role createOrUpdate(RoleDTO roleDTO);
-
     void deleteRole(String roleId);
-
     Role getLatestRole();
 }

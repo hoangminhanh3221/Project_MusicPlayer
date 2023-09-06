@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface FollowerService {
     List<Follower> getAllFollower();
-
     Optional<Follower> getFollowerById(Integer followerId);
-
     Follower createOrUpdate(FollowerDTO followerDTO);
-
     void deleteFollower(Integer followerId);
 }

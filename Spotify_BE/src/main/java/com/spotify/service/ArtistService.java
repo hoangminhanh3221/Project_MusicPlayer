@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface ArtistService {
     List<Artist> getAllArtist();
-
     Optional<Artist> getArtistById(Integer artistId);
-
     Artist createOrUpdate(ArtistDTO artistDTO);
-
     void deleteArtist(Integer artistId);
 }

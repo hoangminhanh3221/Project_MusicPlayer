@@ -6,19 +6,24 @@ import com.spotify.repository.RoleRepository;
 import com.spotify.service.RoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
+    private final MessageSource messageSource;
 
     @Autowired
-    public RoleServiceImpl(RoleRepository roleRepository) {
+    public RoleServiceImpl(RoleRepository roleRepository, MessageSource messageSource) {
         this.roleRepository = roleRepository;
+        this.messageSource = messageSource;
     }
 
     @Override
@@ -33,6 +38,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role createOrUpdate(RoleDTO roleDTO) {
+        checkDuplicateRole(roleDTO);
         Role role = new Role();
         if(roleDTO.getRoleId()==null || roleDTO.getRoleId().isEmpty()){
             roleDTO.setRoleId(getLatestRole().getRoleId());
@@ -61,5 +67,19 @@ public class RoleServiceImpl implements RoleService {
     private String increaseRoleId(String roleId) {
         int id = Integer.parseInt(roleId.substring(1));
         return "R" + String.format("%02d", ++id);
+    }
+
+    private void checkDuplicateRole(RoleDTO roleDTO){
+        /*Kiểm tra duplicate nếu thỏa 2 điều kiện sau
+         * 1. Bị trùng đữ liệu với database
+         * 2. mã của dữ liệu check phải khác với mã tìm đc trong database*/
+        if(roleDTO.getRoleName() != null){
+            Optional<Role> role = roleRepository.findByRoleName(roleDTO.getRoleName());
+            if(role.isPresent() && !Objects.equals(role.get().getRoleId(), roleDTO.getRoleId())){
+                String errorMessage = messageSource.getMessage("duplicate", new Object[]{"Tên Role"},
+                        LocaleContextHolder.getLocale());
+                throw new RuntimeException(errorMessage);
+            }
+        }
     }
 }

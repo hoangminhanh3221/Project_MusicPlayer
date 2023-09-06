@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public interface SongService {
     List<Song> getAllSong();
-
     Optional<Song> getSongById(Integer songId);
-
     Song createOrUpdate(SongDTO songDTO);
-
     void deleteSong(Integer songId);
 }

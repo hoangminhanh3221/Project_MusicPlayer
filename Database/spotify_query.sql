@@ -24,7 +24,7 @@ CREATE TABLE spotify.authority (
 CREATE TABLE spotify.user (
     UserId INT AUTO_INCREMENT PRIMARY KEY,
     UserName VARCHAR(50) NOT NULL,
-    Gender BOOLEAN NOT NULL,
+    Gender BIT NOT NULL,
     DOB DATE NOT NULL,
     Country VARCHAR(50) NOT NULL,
     UserImage VARCHAR(50) NOT NULL,
@@ -39,19 +39,19 @@ CREATE TABLE spotify.artist (
     Genre VARCHAR(50) NOT NULL,
     MonthlyListener BIGINT NOT NULL,
     Follower BIGINT NOT NULL,
-    Gender BOOLEAN NOT NULL,
+    Gender BIT NOT NULL,
     ArtistImage VARCHAR(50) NOT NULL,
-    IsDeleted BOOLEAN NOT NULL
+    IsDeleted BIT NOT NULL
 );
 
 CREATE TABLE spotify.album (
     AlbumId INT AUTO_INCREMENT PRIMARY KEY,
     AlbumName VARCHAR(50) NOT NULL,
     AlbumTitle VARCHAR(255) NOT NULL,
-    ReleaseDate DATE NOT NULL,
+    ReleaseDate DATETIME NOT NULL,
     Genre VARCHAR(50) NOT NULL,
     AlbumImage VARCHAR(50) NOT NULL,
-    IsDeleted BOOLEAN NOT NULL,
+    IsDeleted BIT NOT NULL,
     ArtistId INT NOT NULL,
     FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
 );
@@ -61,7 +61,7 @@ CREATE TABLE spotify.song (
     SongName VARCHAR(50) NOT NULL,
     DurationSeconds INT NOT NULL,
     Path VARCHAR(50) NOT NULL,
-    IsDeleted BOOLEAN NOT NULL,
+    IsDeleted BIT NOT NULL,
     AlbumId INT NOT NULL,
     ArtistId INT NOT NULL,
     FOREIGN KEY (AlbumId) REFERENCES album(AlbumId),
@@ -73,7 +73,7 @@ CREATE TABLE spotify.playlist (
     PlaylistName VARCHAR(50) NOT NULL,
     Description VARCHAR(255) NOT NULL,
     PlaylistImage VARCHAR(50) NOT NULL,
-    IsPublic BOOLEAN NOT NULL
+    IsPublic BIT NOT NULL
 );
 
 CREATE TABLE spotify.playlist_user (
@@ -96,9 +96,9 @@ CREATE TABLE spotify.playlist_song (
 
 CREATE TABLE spotify.history (
     HistoryId INT AUTO_INCREMENT PRIMARY KEY,
+    DatetimeListened DATETIME NOT NULL,
     UserId INT NOT NULL,
     SongId INT NOT NULL,
-    DatetimeListened DATETIME NOT NULL,
     FOREIGN KEY (UserId) REFERENCES user(UserId),
     FOREIGN KEY (SongId) REFERENCES song(SongId)
 );
