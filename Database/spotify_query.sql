@@ -156,4 +156,28 @@ VALUES ('Taylor Swift', 'Pop, Rap, EDM', 0, 0, 1, 'artist1.jpg', 0),
 ('The Weekend', 'Pop, Rap, EDM', 0, 0, 0, 'artist3.jpg', 0),
 ('Justin Bieber', 'Pop, Rap, EDM', 0, 0, 0, 'artist4.jpg', 0);
 
+INSERT INTO spotify.album (AlbumName, AlbumImage, AlbumTitle, Genre, IsDeleted, ReleaseDate, ArtistId)
+VALUES ('Fearless', 'album1.jpg', 'Album mới phát hành','Country, Pop', 0, '2008-11-11T00:00:00', 1),
+('Speak Now', 'album2.jpg', 'Album mới phát hành','Country, Pop', 0, '2008-11-11T00:00:00', 1),
+('Red', 'album3.jpg', 'Album mới phát hành','Country, Pop', 0, '2012-10-22T00:00:00', 1),
+('1989', 'album4.jpg', 'Album mới phát hành','Pop', 0, '2014-10-27T00:00:00', 1),
+('Reputation', 'album5.jpg', 'Album mới phát hành','Pop', 0, '2017-11-10T00:00:00', 1),
+('Lover', 'album6.jpg', 'Album mới phát hành','Pop', 0, '2019-08-23T00:00:00', 1),
+('Folklore', 'album7.jpg', 'Album mới phát hành','Indie Folk, Alternative', 0, '2020-07-24T00:00:00', 1),
+('Evermore', 'album8.jpg', 'Album mới phát hành','Indie Folk, Alternative', 0, '2020-12-11T00:00:00', 1),
+('Fearless (Taylor''s Version)', 'album9.jpg', 'Album mới phát hành','Country, Pop', 0, '2021-04-09T00:00:00', 1),
+('Music of the Sun', 'album10.jpg', 'Album mới phát hành','R&B, Pop, Reggae', 0, '2021-04-09T00:00:00', 1),
+('A Girl Like Me', 'album11.jpg', 'Album mới phát hành','R&B, Pop, Reggae', 0, '2021-04-09T00:00:00', 1),
+('Good Girl Gone Bad', 'album12.jpg', 'Album mới phát hành','R&B, Pop, Dance-Pop', 0, '2021-04-09T00:00:00', 1),
+('Rated R', 'album13.jpg', 'Album mới phát hành','R&B, Pop, Hip-Hop', 0, '2021-04-09T00:00:00', 1);
+
+INSERT INTO spotify.song (SongName, SongImage, Path, DurationSeconds, IsDeleted, AlbumId, ArtistId)
+VALUES ('Fearless (Taylor''s Version)', 'song1.jpg', 'song1.mp3', 240, 0, 9, 1),
+('Love Story (Taylor''s Version)', 'song2.jpg', 'song2.mp3', 210, 0, 9, 1),
+('White Horse (Taylor''s Version)', 'song3.jpg', 'song3.mp3', 230, 0, 9, 1),
+('Consideration', 'song4.jpg', 'song4.mp3', 180, 0, 10, 2),
+('Kiss It Better', 'song5.jpg', 'song5.mp3', 220, 0, 10, 2),
+('Work', 'song6.jpg', 'song6.mp3', 200, 0, 11, 2);
+
+
 
