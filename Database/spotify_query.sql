@@ -179,5 +179,44 @@ VALUES ('Fearless (Taylor''s Version)', 'song1.jpg', 'song1.mp3', 240, 0, 9, 1),
 ('Kiss It Better', 'song5.jpg', 'song5.mp3', 220, 0, 10, 2),
 ('Work', 'song6.jpg', 'song6.mp3', 200, 0, 11, 2);
 
+INSERT INTO spotify.playlist (Description, IsPublic, PlaylistImage, PlaylistName)
+VALUES ('Nhạc trẻ hay nhất', 0, 'playlist1.jpg', 'Nhạc Việt 2023'),
+('Nhạc US-UK', 0, 'playlist2.jpg', 'Nhạc US-UK 2023');
 
 
+INSERT INTO spotify.favorite (DatetimeFavorite, SongId, UserId)
+VALUES ('2023-09-01T00:00:00', 1, 1),
+('2023-09-01T00:00:00', 3, 1),
+('2023-09-01T00:00:00', 4, 1),
+('2023-09-01T00:00:00', 6, 1),
+('2023-09-01T00:00:00', 2, 2),
+('2023-09-01T00:00:00', 3, 2),
+('2023-09-02T00:00:00', 5, 2),
+('2023-09-02T00:00:00', 6, 2),
+('2023-09-02T00:00:00', 1, 3);
+
+INSERT INTO spotify.follower (DatetimeFollow, ArtistId, UserId)
+VALUES ('2023-09-01T00:00:00', 1, 1),
+('2023-09-01T00:00:00', 2, 1),
+('2023-09-01T00:00:00', 3, 1),
+('2023-09-01T00:00:00', 1, 2),
+('2023-09-01T00:00:00', 4, 2);
+
+INSERT INTO spotify.history (DatetimeListened, SongId, UserId)
+VALUES ('2023-09-01T00:00:00', 1, 1),
+('2023-09-01T00:00:00', 2, 1),
+('2023-09-01T00:00:00', 3, 1),
+('2023-09-01T00:00:00', 1, 2),
+('2023-09-01T00:00:00', 4, 2);
+
+INSERT INTO spotify.playlist_song (CreateDate, PlaylistId, SongId)
+VALUES ('2023-09-01T00:00:00', 1, 1),
+('2023-09-01T00:00:00', 1, 2),
+('2023-09-01T00:00:00', 1, 3),
+('2023-09-01T00:00:00', 1, 6),
+('2023-09-01T00:00:00', 2, 1),
+('2023-09-01T00:00:00', 2, 2);
+
+INSERT INTO spotify.playlist_user (CreateDate, PlaylistId, UserId)
+VALUES ('2023-09-01T00:00:00', 1, 1),
+('2023-09-01T00:00:00', 2, 2);
