@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/account")
+@CrossOrigin(origins = "*")
 public class AccountAPI {
 
     private final AccountService accountService;
