@@ -30,5 +30,6 @@ public class Account implements Serializable {
     private List<Authority> authorities;
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
+    @JsonIgnore
     private User user;
 }
