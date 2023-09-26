@@ -1,5 +1,6 @@
 package com.spotify.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -42,5 +44,9 @@ public class Album implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ArtistId", referencedColumnName = "ArtistId", nullable = false)
     private Artist artist;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
+    private List<AlbumSong> albumSongs;
 
 }

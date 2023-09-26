@@ -36,13 +36,13 @@ public class Song implements Serializable {
     @Column(name = "IsDeleted", nullable = false)
     private Boolean isDeleted;
 
-    @ManyToOne
-    @JoinColumn(name = "AlbumId", referencedColumnName = "AlbumId", nullable = false)
-    private Album album;
+    @JsonIgnore
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    private List<AlbumSong> albumSongs;
 
-    @ManyToOne
-    @JoinColumn(name = "ArtistId", referencedColumnName = "ArtistId", nullable = false)
-    private Artist artist;
+    @JsonIgnore
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
+    private List<ArtistSong> artistSongs;
 
     @JsonIgnore
     @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)

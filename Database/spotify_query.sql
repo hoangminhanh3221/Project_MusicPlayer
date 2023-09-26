@@ -68,6 +68,22 @@ CREATE TABLE spotify.song (
     FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
 );
 
+CREATE TABLE spotify.artist_song (
+    ArtistSongId INT AUTO_INCREMENT PRIMARY KEY,
+    ArtistId INT NOT NULL,
+    SongId INT NOT NULL,
+    FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId),
+    FOREIGN KEY (SongId) REFERENCES song(SongId)
+);
+
+CREATE TABLE spotify.album_song (
+    AlbumSongId INT AUTO_INCREMENT PRIMARY KEY,
+    AlbumId INT NOT NULL,
+    SongId INT NOT NULL,
+    FOREIGN KEY (AlbumId) REFERENCES album(AlbumId),
+    FOREIGN KEY (SongId) REFERENCES song(SongId)
+);
+
 CREATE TABLE spotify.playlist (
     PlaylistId INT AUTO_INCREMENT PRIMARY KEY,
     PlaylistName VARCHAR(50) NOT NULL,
