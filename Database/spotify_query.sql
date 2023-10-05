@@ -61,11 +61,8 @@ CREATE TABLE spotify.song (
     SongName VARCHAR(50) NOT NULL,
     DurationSeconds INT NOT NULL,
     Path VARCHAR(50) NOT NULL,
-    IsDeleted BIT NOT NULL,
-    AlbumId INT NOT NULL,
-    ArtistId INT NOT NULL,
-    FOREIGN KEY (AlbumId) REFERENCES album(AlbumId),
-    FOREIGN KEY (ArtistId) REFERENCES artist(ArtistId)
+    Writter VARCHAR(50) Not NULL,
+    IsDeleted BIT NOT NULL
 );
 
 CREATE TABLE spotify.artist_song (
