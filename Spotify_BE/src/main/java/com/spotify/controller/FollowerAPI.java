@@ -4,7 +4,7 @@ import com.spotify.dto.FollowerDTO;
 import com.spotify.entity.Follower;
 import com.spotify.service.FollowerService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/follower")
+@RequiredArgsConstructor
 public class FollowerAPI {
 
     private final FollowerService followerService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public FollowerAPI(FollowerService followerService, MessageSource messageSource) {
-        this.followerService = followerService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Follower>> getAllFollower() {

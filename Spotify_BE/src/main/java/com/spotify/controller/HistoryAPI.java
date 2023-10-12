@@ -4,7 +4,7 @@ import com.spotify.dto.HistoryDTO;
 import com.spotify.entity.History;
 import com.spotify.service.HistoryService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/history")
+@RequiredArgsConstructor
 public class HistoryAPI {
 
     private final HistoryService historyService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public HistoryAPI(HistoryService historyService, MessageSource messageSource) {
-        this.historyService = historyService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<History>> getAllHistory() {

@@ -4,7 +4,7 @@ import com.spotify.dto.AccountDTO;
 import com.spotify.entity.Account;
 import com.spotify.service.AccountService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -18,17 +18,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/account")
-@CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class AccountAPI {
 
     private final AccountService accountService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public AccountAPI(AccountService accountService, MessageSource messageSource) {
-        this.accountService = accountService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Account>> getAllAccount() {

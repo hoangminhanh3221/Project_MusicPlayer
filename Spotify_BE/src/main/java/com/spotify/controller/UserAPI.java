@@ -4,7 +4,7 @@ import com.spotify.dto.UserDTO;
 import com.spotify.entity.User;
 import com.spotify.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
+@RequiredArgsConstructor
 public class UserAPI {
 
     private final UserService userService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public UserAPI(UserService userService, MessageSource messageSource) {
-        this.userService = userService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<User>> getAllUser() {
