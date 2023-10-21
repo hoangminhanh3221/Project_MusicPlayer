@@ -4,7 +4,7 @@ import com.spotify.dto.AuthorityDTO;
 import com.spotify.entity.Authority;
 import com.spotify.service.AuthorityService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/authority")
-public class AuthorityAPI {
+@RequiredArgsConstructor
+public class AuthorityController {
 
     private final AuthorityService authorityService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public AuthorityAPI(AuthorityService authorityService, MessageSource messageSource) {
-        this.authorityService = authorityService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Authority>> getAllAuthority() {

@@ -4,22 +4,18 @@ import com.spotify.dto.FollowerDTO;
 import com.spotify.entity.Follower;
 import com.spotify.repository.FollowerRepository;
 import com.spotify.service.FollowerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class FollowerServiceImpl implements FollowerService {
 
     private final FollowerRepository followerRepository;
-
-    @Autowired
-    public FollowerServiceImpl(FollowerRepository followerRepository) {
-        this.followerRepository = followerRepository;
-    }
 
     @Override
     public List<Follower> getAllFollower() {

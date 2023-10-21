@@ -16,13 +16,17 @@ import java.util.List;
 @Table(name = "account")
 public class Account implements Serializable {
     @Id
-    @Column(name = "AccountId", length = 20)
-    private String accountId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "AccountId")
+    private Integer accountId;
+
+    @Column(name = "Username", length = 20)
+    private String username;
 
     @Column(name = "Email", length = 50, nullable = false, unique = true)
     private String email;
 
-    @Column(name = "Password", length = 50, nullable = false)
+    @Column(name = "Password", length = 255, nullable = false)
     private String password;
 
     @JsonIgnore

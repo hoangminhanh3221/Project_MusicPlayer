@@ -4,7 +4,7 @@ import com.spotify.dto.AlbumDTO;
 import com.spotify.entity.Album;
 import com.spotify.service.AlbumService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/album")
-public class AlbumAPI {
+@RequiredArgsConstructor
+public class AlbumController {
 
     private final AlbumService albumService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public AlbumAPI(AlbumService albumService, MessageSource messageSource) {
-        this.albumService = albumService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Album>> getAllAlbum() {

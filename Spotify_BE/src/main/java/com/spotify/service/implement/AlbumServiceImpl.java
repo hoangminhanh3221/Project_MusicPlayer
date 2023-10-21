@@ -4,8 +4,8 @@ import com.spotify.dto.AlbumDTO;
 import com.spotify.entity.Album;
 import com.spotify.repository.AlbumRepository;
 import com.spotify.service.AlbumService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepository albumRepository;
     private final MessageSource messageSource;
-
-    @Autowired
-    public AlbumServiceImpl(AlbumRepository albumRepository, MessageSource messageSource) {
-        this.albumRepository = albumRepository;
-        this.messageSource = messageSource;
-    }
 
     @Override
     public List<Album> getAllAlbum() {

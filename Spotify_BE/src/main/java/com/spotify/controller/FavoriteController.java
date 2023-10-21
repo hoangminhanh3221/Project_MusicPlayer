@@ -4,7 +4,7 @@ import com.spotify.dto.FavoriteDTO;
 import com.spotify.entity.Favorite;
 import com.spotify.service.FavoriteService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/favorite")
-public class FavoriteAPI {
+@RequiredArgsConstructor
+public class FavoriteController {
 
     private final FavoriteService favoriteService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public FavoriteAPI(FavoriteService favoriteService, MessageSource messageSource) {
-        this.favoriteService = favoriteService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Favorite>> getAllFavorite() {

@@ -4,7 +4,7 @@ import com.spotify.dto.ArtistDTO;
 import com.spotify.entity.Artist;
 import com.spotify.service.ArtistService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/artist")
-public class ArtistAPI {
+@RequiredArgsConstructor
+public class ArtistController {
 
     private final ArtistService artistService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public ArtistAPI(ArtistService artistService, MessageSource messageSource) {
-        this.artistService = artistService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Artist>> getAllArtist() {

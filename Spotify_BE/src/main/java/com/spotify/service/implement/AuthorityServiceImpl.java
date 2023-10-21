@@ -4,22 +4,18 @@ import com.spotify.dto.AuthorityDTO;
 import com.spotify.entity.Authority;
 import com.spotify.repository.AuthorityRepository;
 import com.spotify.service.AuthorityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AuthorityServiceImpl implements AuthorityService {
 
     private final AuthorityRepository authorityRepository;
-
-    @Autowired
-    public AuthorityServiceImpl(AuthorityRepository authorityRepository) {
-        this.authorityRepository = authorityRepository;
-    }
 
     @Override
     public List<Authority> getAllAuthority() {
@@ -41,5 +37,10 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public void deleteAuthority(Integer authorityId) {
         authorityRepository.deleteById(authorityId);
+    }
+
+    @Override
+    public List<Authority> findByAccountId(Integer accountId) {
+        return authorityRepository.findAuthoritiesByAccount_AccountId(accountId);
     }
 }

@@ -4,8 +4,8 @@ import com.spotify.dto.AccountDTO;
 import com.spotify.entity.Account;
 import com.spotify.repository.AccountRepository;
 import com.spotify.service.AccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
@@ -14,16 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
     private final MessageSource messageSource;
-
-    @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository, MessageSource messageSource) {
-        this.accountRepository = accountRepository;
-        this.messageSource = messageSource;
-    }
 
     @Override
     public List<Account> getAllAccount() {
@@ -31,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Optional<Account> getAccountById(String accountId) {
+    public Optional<Account> getAccountById(Integer accountId) {
         return accountRepository.findById(accountId);
     }
 
@@ -44,16 +39,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void deleteAccount(String accountId) {
+    public void deleteAccount(Integer accountId) {
         accountRepository.deleteById(accountId);
     }
 
-    private void checkDuplicateAccount(AccountDTO accountDTO){
+    @Override
+    public Optional<Account> findByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
+
+    private void checkDuplicateAccount(AccountDTO accountDTO) {
         /*Kiểm tra duplicate nếu thỏa điều kiện sau
          * 1. Bị trùng đữ liệu với database*/
-        if(accountDTO.getAccountId() != null){
+        if (accountDTO.getUsername() != null && accountDTO.getAccountId() != null) {
             Optional<Account> account = accountRepository.findById(accountDTO.getAccountId());
-            if(account.isPresent()){
+            if (account.isPresent()) {
                 String errorMessage = messageSource.getMessage("duplicate", new Object[]{"Tên tài khoản"},
                         LocaleContextHolder.getLocale());
                 throw new RuntimeException(errorMessage);

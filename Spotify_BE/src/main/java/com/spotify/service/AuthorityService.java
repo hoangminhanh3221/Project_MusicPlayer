@@ -11,4 +11,6 @@ public interface AuthorityService {
     Optional<Authority> getAuthorityById(Integer authorityId);
     Authority createOrUpdate(AuthorityDTO authorityDTO);
     void deleteAuthority(Integer authorityId);
+
+    List<Authority> findByAccountId(Integer accountId);
 }

@@ -4,7 +4,7 @@ import com.spotify.dto.AccountDTO;
 import com.spotify.entity.Account;
 import com.spotify.service.AccountService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -15,20 +15,13 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("/api/account")
-@CrossOrigin(origins = "*")
-public class AccountAPI {
+@RequiredArgsConstructor
+public class AccountController {
 
     private final AccountService accountService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public AccountAPI(AccountService accountService, MessageSource messageSource) {
-        this.accountService = accountService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Account>> getAllAccount() {
@@ -59,7 +52,7 @@ public class AccountAPI {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable("id") String id) {
+    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable("id") Integer id) {
         Optional<Account> currentAccount = accountService.getAccountById(id);
         if (currentAccount.isPresent()) {
             accountService.deleteAccount(id);

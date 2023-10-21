@@ -4,7 +4,7 @@ import com.spotify.dto.RoleDTO;
 import com.spotify.entity.Role;
 import com.spotify.service.RoleService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -18,16 +18,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/role")
-public class RoleAPI {
+@RequiredArgsConstructor
+public class RoleController {
 
     private final RoleService roleService;
     private final MessageSource messageSource;
-
-    @Autowired
-    public RoleAPI(RoleService roleService, MessageSource messageSource) {
-        this.roleService = roleService;
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Role>> getAllRole() {

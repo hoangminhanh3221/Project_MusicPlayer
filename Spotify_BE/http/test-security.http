@@ -1,0 +1,26 @@
+### Register User
+POST http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+  "username": "test3",
+  "email": "test3@gmail.com",
+  "password": "12345"
+}
+
+> {% client.global.set("token", response.body.token);  %}
+
+### Authenticate User
+POST http://localhost:8080/api/authentication
+Content-Type: application/json
+
+{
+  "username":  "test1",
+  "password": "12345"
+}
+
+> {% client.global.set("token", response.body.token);  %}
+
+### Query the Demo endpoint
+GET http://localhost:8080/api/demo
+Authorization: Bearer {{token}}
