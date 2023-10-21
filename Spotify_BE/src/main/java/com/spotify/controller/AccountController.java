@@ -1,8 +1,8 @@
 package com.spotify.controller;
 
-import com.spotify.dto.RoleDTO;
-import com.spotify.entity.Role;
-import com.spotify.service.RoleService;
+import com.spotify.dto.AccountDTO;
+import com.spotify.entity.Account;
+import com.spotify.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -15,24 +15,23 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
-@RequestMapping("/api/role")
+@RequestMapping("/api/account")
 @RequiredArgsConstructor
-public class RoleAPI {
+public class AccountController {
 
-    private final RoleService roleService;
+    private final AccountService accountService;
     private final MessageSource messageSource;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Role>> getAllRole() {
-        return ResponseEntity.ok(roleService.getAllRole());
+    public ResponseEntity<List<Account>> getAllAccount() {
+        return ResponseEntity.ok(accountService.getAllAccount());
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HttpStatus> createRole(@RequestBody @Valid RoleDTO roleDTO) {
-        if (roleDTO != null) {
-            roleService.createOrUpdate(roleDTO);
+    public ResponseEntity<HttpStatus> createAccount(@RequestBody @Valid AccountDTO accountDTO) {
+        if (accountDTO != null) {
+            accountService.createOrUpdate(accountDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.badRequest().build();
@@ -40,26 +39,26 @@ public class RoleAPI {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> updateRole(@RequestBody @Valid RoleDTO roleDTO) {
-        Optional<Role> currentRole = roleService.getRoleById(roleDTO.getRoleId());
-        if (currentRole.isPresent()) {
-            roleService.createOrUpdate(roleDTO);
+    public ResponseEntity<HttpStatus> updateAccount(@RequestBody @Valid AccountDTO accountDTO) {
+        Optional<Account> currentAccount = accountService.getAccountById(accountDTO.getAccountId());
+        if (currentAccount.isPresent()) {
+            accountService.createOrUpdate(accountDTO);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Role"},
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Account"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteRole(@PathVariable("id") String id) {
-        Optional<Role> currentRole = roleService.getRoleById(id);
-        if (currentRole.isPresent()) {
-            roleService.deleteRole(id);
+    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable("id") Integer id) {
+        Optional<Account> currentAccount = accountService.getAccountById(id);
+        if (currentAccount.isPresent()) {
+            accountService.deleteAccount(id);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Role"},
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Account"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }

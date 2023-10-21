@@ -1,4 +1,4 @@
-package com.spotify.config;
+package com.spotify.configuration;
 
 import com.spotify.util.ErrorResponse;
 import com.spotify.util.FieldErrorInfo;

@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/artist")
 @RequiredArgsConstructor
-public class ArtistAPI {
+public class ArtistController {
 
     private final ArtistService artistService;
     private final MessageSource messageSource;

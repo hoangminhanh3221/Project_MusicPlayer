@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/authority")
 @RequiredArgsConstructor
-public class AuthorityAPI {
+public class AuthorityController {
 
     private final AuthorityService authorityService;
     private final MessageSource messageSource;

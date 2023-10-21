@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/favorite")
 @RequiredArgsConstructor
-public class FavoriteAPI {
+public class FavoriteController {
 
     private final FavoriteService favoriteService;
     private final MessageSource messageSource;

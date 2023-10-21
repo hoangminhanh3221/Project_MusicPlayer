@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public interface AccountService {
     List<Account> getAllAccount();
-    Optional<Account> getAccountById(String accountId);
+    Optional<Account> getAccountById(Integer accountId);
     Account createOrUpdate(AccountDTO accountDTO);
-    void deleteAccount(String accountId);
+    void deleteAccount(Integer accountId);
+    Optional<Account> findByUsername(String username);
 }

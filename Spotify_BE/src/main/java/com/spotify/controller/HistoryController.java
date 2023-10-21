@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/history")
 @RequiredArgsConstructor
-public class HistoryAPI {
+public class HistoryController {
 
     private final HistoryService historyService;
     private final MessageSource messageSource;

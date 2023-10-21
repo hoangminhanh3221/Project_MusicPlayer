@@ -1,8 +1,8 @@
 package com.spotify.controller;
 
-import com.spotify.dto.SongDTO;
-import com.spotify.entity.Song;
-import com.spotify.service.SongService;
+import com.spotify.dto.RoleDTO;
+import com.spotify.entity.Role;
+import com.spotify.service.RoleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -15,23 +15,24 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/song")
-@RequiredArgsConstructor
-public class SongAPI {
 
-    private final SongService songService;
+@RestController
+@RequestMapping("/api/role")
+@RequiredArgsConstructor
+public class RoleController {
+
+    private final RoleService roleService;
     private final MessageSource messageSource;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Song>> getAllSong() {
-        return ResponseEntity.ok(songService.getAllSong());
+    public ResponseEntity<List<Role>> getAllRole() {
+        return ResponseEntity.ok(roleService.getAllRole());
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HttpStatus> createSong(@RequestBody @Valid SongDTO songDTO) {
-        if (songDTO != null) {
-            songService.createOrUpdate(songDTO);
+    public ResponseEntity<HttpStatus> createRole(@RequestBody @Valid RoleDTO roleDTO) {
+        if (roleDTO != null) {
+            roleService.createOrUpdate(roleDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.badRequest().build();
@@ -39,26 +40,26 @@ public class SongAPI {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HttpStatus> updateSong(@RequestBody @Valid SongDTO songDTO) {
-        Optional<Song> currentSong = songService.getSongById(songDTO.getSongId());
-        if (currentSong.isPresent()) {
-            songService.createOrUpdate(songDTO);
+    public ResponseEntity<HttpStatus> updateRole(@RequestBody @Valid RoleDTO roleDTO) {
+        Optional<Role> currentRole = roleService.getRoleById(roleDTO.getRoleId());
+        if (currentRole.isPresent()) {
+            roleService.createOrUpdate(roleDTO);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Song"},
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Role"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteSong(@PathVariable("id") Integer id) {
-        Optional<Song> currentSong = songService.getSongById(id);
-        if (currentSong.isPresent()) {
-            songService.deleteSong(id);
+    public ResponseEntity<HttpStatus> deleteRole(@PathVariable("id") String id) {
+        Optional<Role> currentRole = roleService.getRoleById(id);
+        if (currentRole.isPresent()) {
+            roleService.deleteRole(id);
             return ResponseEntity.ok().build();
         } else {
-            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Song"},
+            String errorMessage = messageSource.getMessage("notfound", new Object[]{"Role"},
                     LocaleContextHolder.getLocale());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, errorMessage);
         }

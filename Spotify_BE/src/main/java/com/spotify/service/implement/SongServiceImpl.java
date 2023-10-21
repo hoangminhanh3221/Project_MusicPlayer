@@ -4,22 +4,18 @@ import com.spotify.dto.SongDTO;
 import com.spotify.entity.Song;
 import com.spotify.repository.SongRepository;
 import com.spotify.service.SongService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
-
-    @Autowired
-    public SongServiceImpl(SongRepository songRepository) {
-        this.songRepository = songRepository;
-    }
 
     @Override
     public List<Song> getAllSong() {

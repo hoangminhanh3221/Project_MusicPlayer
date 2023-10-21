@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/album")
 @RequiredArgsConstructor
-public class AlbumAPI {
+public class AlbumController {
 
     private final AlbumService albumService;
     private final MessageSource messageSource;

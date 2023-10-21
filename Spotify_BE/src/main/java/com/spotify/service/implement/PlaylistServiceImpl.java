@@ -4,8 +4,8 @@ import com.spotify.dto.PlaylistDTO;
 import com.spotify.entity.Playlist;
 import com.spotify.repository.PlaylistRepository;
 import com.spotify.service.PlaylistService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService {
 
     private final PlaylistRepository playlistRepository;
     private final MessageSource messageSource;
-
-    @Autowired
-    public PlaylistServiceImpl(PlaylistRepository playlistRepository, MessageSource messageSource) {
-        this.playlistRepository = playlistRepository;
-        this.messageSource = messageSource;
-    }
 
     @Override
     public List<Playlist> getAllPlaylist() {

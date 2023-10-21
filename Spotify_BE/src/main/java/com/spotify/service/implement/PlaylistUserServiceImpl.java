@@ -4,22 +4,18 @@ import com.spotify.dto.PlaylistUserDTO;
 import com.spotify.entity.PlaylistUser;
 import com.spotify.repository.PlaylistUserRepository;
 import com.spotify.service.PlaylistUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PlaylistUserServiceImpl implements PlaylistUserService {
 
     private final PlaylistUserRepository playlistUserRepository;
-
-    @Autowired
-    public PlaylistUserServiceImpl(PlaylistUserRepository playlistUserRepository) {
-        this.playlistUserRepository = playlistUserRepository;
-    }
 
     @Override
     public List<PlaylistUser> getAllPlaylistUser() {

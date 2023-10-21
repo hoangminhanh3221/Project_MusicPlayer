@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/playlistSong")
 @RequiredArgsConstructor
-public class PlaylistSongAPI {
+public class PlaylistSongController {
 
     private final PlaylistSongService playlistSongService;
     private final MessageSource messageSource;

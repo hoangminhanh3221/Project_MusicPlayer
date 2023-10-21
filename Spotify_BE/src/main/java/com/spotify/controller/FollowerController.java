@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/follower")
 @RequiredArgsConstructor
-public class FollowerAPI {
+public class FollowerController {
 
     private final FollowerService followerService;
     private final MessageSource messageSource;
